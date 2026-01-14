@@ -1,0 +1,71 @@
+CXXFLAGS = -I ./src/SDL2/include
+LDFLAGS = -L ./src/SDL2/lib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lstdc++ 
+
+
+all: bin/game bin/SDL2jeu
+
+bin:
+	mkdir -p bin
+
+obj:
+	mkdir -p obj
+
+bin/game: obj/Personage.o obj/Terrain.o obj/Case.o obj/Game.o obj/main.o obj/Maison.o obj/Tsunami.o obj/Events.o
+	g++ -ggdb -g obj/Personage.o obj/Terrain.o obj/Case.o obj/Game.o obj/Maison.o obj/main.o obj/Tsunami.o obj/Events.o -o bin/game $(LDFLAGS)
+
+bin/SDL2jeu: obj/SDLSprite.o obj/Events.o obj/Terrain.o obj/Personage.o obj/Case.o obj/SDLJeu.o obj/JeuSDL.o obj/Maison.o obj/Game.o obj/SDLMenu.o obj/SDLIncident.o obj/Tsunami.o obj/SDLAnimation.o obj/SDLMenuJeu.o obj/SDLMessage.o
+	g++ -ggdb -g obj/Terrain.o obj/Events.o obj/Personage.o obj/Case.o obj/SDLSprite.o obj/SDLJeu.o obj/SDLMenu.o obj/JeuSDL.o obj/Maison.o obj/Game.o -o bin/SDL2jeu obj/SDLIncident.o obj/Tsunami.o obj/SDLAnimation.o obj/SDLMenuJeu.o obj/SDLMessage.o $(CXXFLAGS) $(LDFLAGS)
+
+obj/main.o: src/main.cpp src/Personage.h src/Terrain.h src/Game.h
+	g++ -ggdb -g -c src/main.cpp -o obj/main.o $(CXXFLAGS)
+
+obj/JeuSDL.o: src/SDL2/JeuSDL.cpp src/SDL2/SDLJeu.h 
+	g++ -ggdb -Wall -g -c src/SDL2/JeuSDL.cpp -o obj/JeuSDL.o $(CXXFLAGS)
+
+obj/Tsunami.o: src/Tsunami.cpp src/Tsunami.h src/Personage.h
+	g++ -ggdb -c src/Tsunami.cpp -o obj/Tsunami.o $(CXXFLAGS)
+
+obj/Personage.o: src/Personage.cpp src/Personage.h src/Events.h
+	g++ -ggdb -g -c src/Personage.cpp -o obj/Personage.o $(CXXFLAGS)
+
+obj/Terrain.o: src/Terrain.cpp src/Terrain.h src/Case.h
+	g++ -ggdb -g -c src/Terrain.cpp -o obj/Terrain.o $(CXXFLAGS)
+
+obj/Case.o: src/Case.cpp src/Case.h
+	g++ -ggdb -g -c src/Case.cpp -o obj/Case.o $(CXXFLAGS)
+
+obj/SDLJeu.o: src/SDL2/SDLJeu.cpp src/SDL2/SDLSprite.h src/SDL2/SDLJeu.h src/SDL2/SDLMenu.h src/SDL2/SDLIncident.h src/Personage.h src/Terrain.h src/Case.h 
+	g++ -ggdb -Wall -g -c src/SDL2/SDLJeu.cpp -o obj/SDLJeu.o $(CXXFLAGS)
+
+obj/SDLSprite.o: src/SDL2/SDLSprite.cpp src/SDL2/SDLSprite.h
+	g++ -ggdb -Wall -g -c src/SDL2/SDLSprite.cpp -o obj/SDLSprite.o $(CXXFLAGS)
+
+obj/Game.o: src/Game.cpp src/Game.h src/Personage.h src/Terrain.h src/Events.h src/Tsunami.h
+	g++ -ggdb -g -c src/Game.cpp -o obj/Game.o $(CXXFLAGS)
+
+obj/Events.o: src/Events.cpp src/Events.h
+	g++ -ggdb -Wall -g -c src/Events.cpp -o obj/Events.o 
+
+obj/Maison.o: src/Maison.cpp src/Maison.h
+	g++ -ggdb -c src/Maison.cpp -o obj/Maison.o $(CXXFLAGS)
+
+obj/Node.o: src/Node.h
+	g++ -ggdb -c src/Node.cpp -o obj/Node.o $(CXXFLAGS)
+
+obj/SDLMenu.o: src/SDL2/SDLMenu.cpp src/SDL2/SDLMenu.h
+	g++ -ggdb -c src/SDL2/SDLMenu.cpp -o obj/SDLMenu.o $(CXXFLAGS)
+
+obj/SDLIncident.o: src/SDL2/SDLIncident.cpp src/SDL2/SDLIncident.h
+	g++ -ggdb -c src/SDL2/SDLIncident.cpp -o obj/SDLIncident.o $(CXXFLAGS)
+
+obj/SDLAnimation.o: src/SDL2/SDLAnimation.cpp src/SDL2/SDLAnimation.h
+	g++ -ggdb -c src/SDL2/SDLAnimation.cpp -o obj/SDLAnimation.o $(CXXFLAGS)
+
+obj/SDLMenuJeu.o: src/SDL2/SDLMenuJeu.cpp src/SDL2/SDLMenuJeu.h
+	g++ -ggdb -c src/SDL2/SDLMenuJeu.cpp -o obj/SDLMenuJeu.o $(CXXFLAGS)
+
+obj/SDLMessage.o: src/SDL2/SDLMessage.cpp src/SDL2/SDLMessage.h
+	g++ -ggdb -c src/SDL2/SDLMessage.cpp -o obj/SDLMessage.o $(CXXFLAGS)
+
+clean:
+	rm -f obj/*.o bin/game bin/SDL2jeu

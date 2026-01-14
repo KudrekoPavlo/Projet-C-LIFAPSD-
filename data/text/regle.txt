@@ -1,0 +1,19 @@
+                     Regles de jeu principeles : 
+    Au debut vous avez un(e) personage qui peut couper le forret et recolter le ble.
+    Vous pouvez construir la maison dans le menu(appouer "m" pour ouvrir le menu).
+Vous pouvez cree les nouveaux personnages dans la menu de maison(appouer sur la
+maison).
+    Pour construir la maison il vous faut des ressours(bois, nuri).
+    Tout les 5 minutes tsunami va passer sur le terrain, pour proteger votre 
+personnages, metez les dans la maison, sinon ils mourirent. 
+    Tout les 2 minutes vous serez raider par les pirates qui pouvent tuer votre 
+personnages, pour les proteger, metez les dans la maison.
+    Attention : ce jeu n'est pas base sur des evenements reels, toutes les 
+intersections sont fortuites. Il existe un risque de traumatisme psychologique
+pendant le jeu, et le jeu n'est pas recommande aux personnes souffrant de
+handicaps mentaux et de troubles psychologiques instables. Nous ne sommes pas
+responsables de votre sante, de votre etat psychologique et de votre vie 
+pendant que vous jouez au jeu.
+
+
+  
